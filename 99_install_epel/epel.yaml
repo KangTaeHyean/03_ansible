@@ -1,0 +1,10 @@
+---
+- name: epel-release 설치
+  hosts: all
+  gather_facts: yes
+  tasks:
+  - name: 1) epel-release 설치
+    yum: 
+      name:
+      - epel-release
+      state: latest

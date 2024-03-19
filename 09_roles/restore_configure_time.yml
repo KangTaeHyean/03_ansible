@@ -1,0 +1,24 @@
+---
+- name: 각 데이터 센터 시간 동기화
+  hosts: datacenters
+  # vars:
+  #   timesyn_ntp_servers:
+  #   - hostname: time.bora.net
+  #     iburst: true
+  tasks:
+  - name: 타임존 설정
+    timezone:
+      name: "{{ host_timezone }}"
+    vars:
+    - host_timezone: "Asia/Seoul"
+
+  - name: chronyd 서비스 재기동
+    service:
+      name: chronyd
+      state: restarted
+  
+  # - name: 시간 확인
+  #   shell:
+  #     cmd: date
+  #   regsiter: output
+  # - debug: var=output

@@ -1,0 +1,29 @@
+---
+- name: 잡 제어 플레이브 예제 복원
+  hosts: all
+  gather_facts: yes
+  vars_files: vars/vars.yml
+  tasks:
+    - name: 방화벽에 포트/서비스 제거
+      firewalld:
+        
+    - name: 웹 서버 설정 복원
+      file:
+        path: "{{ item. dest }}"
+
+    - name: 웹 서비스 종료
+      service:
+        name: "{{ item }}"
+        state: stopped
+        enabled: no
+      with:items:
+      - httpd
+
+    - name: 웹 최신 패키지 삭제
+      yum:
+        name: "{{ packages }}"
+        state: latest
+      vars:
+        packages:
+        - httpd
+        - mod_ssl

@@ -1,0 +1,19 @@
+- name: 모든 서버 셧다운
+  hosts: ansibles
+  gather_facts: no
+  tasks:
+  - name: ansible1 ~ ansible4 서버 셧다운
+    community.general.shutdown:
+      delay: 10
+
+- name: 현재 서버 셧다운
+  hosts: localnachine
+  gather_facts: no
+  tasks:
+  - name: ansible 서버 셧다운
+    community.general.shutdown:
+      delay: 20
+
+...
+
+  

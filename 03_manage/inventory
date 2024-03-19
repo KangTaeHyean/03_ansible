@@ -1,0 +1,8 @@
+[myself]
+localhost
+
+[intranetweb]
+web1.example.com
+
+[internetweb]
+web2.example.com
